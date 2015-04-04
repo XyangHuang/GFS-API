@@ -9,6 +9,6 @@ import com.hxy.gfs.model.EmployerAdmin;
 
 public interface EmployerAdminRepository extends CrudRepository<EmployerAdmin, Long> {
     
-    @Query("FROM BaseAccount u WHERE u.userName=:userName AND u.markForDelete=0")
-    public BaseAccount getUserByUserName(@Param("userName") String userName);
+    @Query("FROM EmployerAdmin u WHERE u.baseAccountId=:baseAccountId AND u.markForDelete=0")
+    public BaseAccount getEmployerAdminByBaseAccountId(@Param("baseAccountId") String baseAccountId);
 }

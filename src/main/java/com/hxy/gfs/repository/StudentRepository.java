@@ -9,5 +9,5 @@ import com.hxy.gfs.model.Student;
 public interface StudentRepository extends CrudRepository<Student, Long> {
     
     @Query("FROM Student u WHERE u.baseAccountId=:baseAccountId AND u.markForDelete=0")
-    public Student getStudentByUserName(@Param("baseAccountId") long baseAccountId);
+    public Student getStudentByBaseAccountId(@Param("baseAccountId") long baseAccountId);
 }
