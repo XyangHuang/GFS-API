@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="GFS">
+		<class>com.hxy.gfs.model.BaseAccount</class>
+		<class>com.hxy.gfs.model.BaseDepartment</class>
+		<class>com.hxy.gfs.model.BaseModel</class>
+		<class>com.hxy.gfs.model.Employer</class>
+		<class>com.hxy.gfs.model.EmployerAdmin</class>
+		<class>com.hxy.gfs.model.EvaluationCriterion</class>
+		<class>com.hxy.gfs.model.OverallEvaluation</class>
+		<class>com.hxy.gfs.model.Profession</class>
+		<class>com.hxy.gfs.model.ProfessionAdmin</class>
+		<class>com.hxy.gfs.model.Question</class>
+		<class>com.hxy.gfs.model.QuestionChoice</class>
+		<class>com.hxy.gfs.model.Questionnaire</class>
+		<class>com.hxy.gfs.model.SessionContext</class>
+		<class>com.hxy.gfs.model.Student</class>
+		<class>com.hxy.gfs.model.SystemAdmin</class>
+		<class>com.hxy.gfs.model.UserQuestionnaire</class>
+		<class>com.hxy.gfs.model.UserQuestionnaireAnswer</class>
+		<class>com.hxy.gfs.model.container.Account</class>
+		<class>com.hxy.gfs.model.container.Department</class>
+	</persistence-unit>
+</persistence>
