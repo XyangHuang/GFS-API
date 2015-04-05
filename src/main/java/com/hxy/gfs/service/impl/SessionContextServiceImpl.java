@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hxy.gfs.model.SessionContext;
+import com.hxy.gfs.model.container.Account;
 import com.hxy.gfs.repository.SessionContextRepository;
 import com.hxy.gfs.service.SessionContextService;
 
@@ -20,9 +21,13 @@ public class SessionContextServiceImpl implements SessionContextService {
 
     @Override
     @Transactional
-    public SessionContext create(long userId) {
+    public SessionContext create(Account user) {
+        if (user == null) return null;
+        
         SessionContext sessionContext = new SessionContext();
-        sessionContext.setUserId(userId);
+        sessionContext.setUserId(user.getBaseAccountId());
+        sessionContext.setRole(user.getRole());
+        sessionContext.setUserName(user.getUserName());
         // Set login time
         Date loginTime = new Date();
         sessionContext.setLoginTime(loginTime);

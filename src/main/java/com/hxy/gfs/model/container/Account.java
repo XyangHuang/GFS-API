@@ -106,6 +106,7 @@ public class Account extends BaseModel
         if (baseAccount != null)
         {
             this.userName = baseAccount.getUserName();
+            this.password = baseAccount.getPassword();
             this.name = baseAccount.getName();
             this.phoneNumber = baseAccount.getPhoneNumber();
             this.role = baseAccount.getRole();

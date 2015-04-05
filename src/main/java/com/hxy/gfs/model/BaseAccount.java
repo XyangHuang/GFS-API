@@ -26,7 +26,7 @@ public class BaseAccount extends BaseModel implements Serializable
     @Column(name = Constants.FIELD_BASE_ACCOUNT_PASSWORD, nullable = false, columnDefinition = "VARCHAR(45)")
     private String password;
     
-    @Column(name = Constants.FIELD_BASE_ACCOUNT_NICK_NAME, columnDefinition = "VARCHAR(45)")
+    @Column(name = "name", columnDefinition = "VARCHAR(45)")
     private String name;
     
     @Column(name = "phone_number", columnDefinition = "VARCHAR(45)")
@@ -87,6 +87,7 @@ public class BaseAccount extends BaseModel implements Serializable
         if (account != null)
         {
             this.userName = account.getUserName();
+            this.password = account.getPassword();
             this.name = account.getName();
             this.phoneNumber = account.getPhoneNumber();
             this.role = account.getRole();

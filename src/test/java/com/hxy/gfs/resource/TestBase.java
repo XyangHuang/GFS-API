@@ -28,39 +28,15 @@ public abstract class TestBase extends JerseyTest {
 
     private static final String CONTAINER_GRIZZLY = "org.glassfish.jersey.test.grizzly.GrizzlyTestContainerFactory";
     protected static String userToken;
-    protected static String adminToken;
 
     @Override
     protected Application configure() {
         set(TestProperties.CONTAINER_FACTORY, CONTAINER_GRIZZLY);
-        return new ResourceConfig().packages("com.hxy.questionnaire");
+        return new ResourceConfig().packages("com.hxy.gfs");
     }
 
     @Resource
     private UserService userService;
-
-/*    @Before
-    public void Login() {
-
-        StringBuilder postBody = new StringBuilder();
-        postBody.append("{");
-        postBody.append("   \"login\": {");
-        postBody.append("       \"username\": \"user\",");
-        postBody.append("       \"password\": \"password\"");
-        postBody.append("   }");
-        postBody.append("}");
-        Response userLoginResponse = doPost("login/user", StringUtil.EMPTY, postBody.toString());
-        Response adminLoginResponse = doPost("login/admin", StringUtil.EMPTY, postBody.toString());
-        assertEquals("Login fail", Status.OK.getStatusCode(), userLoginResponse.getStatus());
-        assertEquals("Login fail", Status.OK.getStatusCode(), adminLoginResponse.getStatus());
-        String userLoginResponseJson = userLoginResponse.readEntity(String.class);
-        String adminLoginResponseJson = adminLoginResponse.readEntity(String.class);
-        SessionContext userSessionContext = JsonUtil.getPojoFromJsonString(userLoginResponseJson, SessionContext.class);
-        SessionContext adminSessionContext = JsonUtil.getPojoFromJsonString(adminLoginResponseJson,
-                        SessionContext.class);
-        userToken = userSessionContext.getToken();
-        adminToken = adminSessionContext.getToken();
-    }*/
 
     protected Response doPost(String path, String token, String postBody) {
         return target(path).request().header(Constants.HEADER_X_AUTH_HEADER, token)

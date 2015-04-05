@@ -13,7 +13,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 @ApplicationPath("/*")
 public class App extends ResourceConfig 
 {
-    public App( String[] args )
+    public App()
     {
         packages("com.hxy.gfs");
         register(JacksonJsonProvider.class);

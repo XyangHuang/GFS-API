@@ -1,10 +1,11 @@
 package com.hxy.gfs.service;
 
 import com.hxy.gfs.model.SessionContext;
+import com.hxy.gfs.model.container.Account;
 
 public interface SessionContextService {
 
-    public SessionContext create(long userId);
+    public SessionContext create(Account user);
 
     public SessionContext update(SessionContext sessionContext);
 

@@ -9,10 +9,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hxy.gfs.MockUtil;
-import com.hxy.gfs.enums.UserRole;
 import com.hxy.gfs.model.EmployerAdmin;
 import com.hxy.gfs.model.ProfessionAdmin;
 import com.hxy.gfs.model.Student;
+import com.hxy.gfs.model.SystemAdmin;
 import com.hxy.gfs.model.container.Account;
 import com.hxy.gfs.utils.MD5Util;
 
@@ -20,23 +20,56 @@ public class UserServiceTest extends TestBase
 {
     @Autowired
     private UserService userService;
-    
-    private Account baseAccount;
+
+    private SystemAdmin systemAdmin;
+
+    private EmployerAdmin employerAdmin;
+
+    private ProfessionAdmin professionAdmin;
+
+    private Student student;
 
     @Before
     public void setUp()
     {
-        baseAccount = MockUtil.mockUser();
+        systemAdmin = MockUtil.mockSystemAdmin();
+
+        employerAdmin = MockUtil.mockEmployerAdmin();
+
+        professionAdmin = MockUtil.mockProfessionAdmin();
+
+        student = MockUtil.mockStudent();
     }
 
     @After
     public void tearDown()
     {
-        Account userInDB = userService.getById(baseAccount.getId());
-        
+        Account userInDB = userService.getById(systemAdmin.getBaseAccountId());
+
         if (userInDB != null)
         {
-            userService.deleteById(baseAccount.getId());
+            userService.deleteById(systemAdmin.getBaseAccountId());
+        }
+
+        userInDB = userService.getById(employerAdmin.getBaseAccountId());
+
+        if (userInDB != null)
+        {
+            userService.deleteById(employerAdmin.getBaseAccountId());
+        }
+
+        userInDB = userService.getById(professionAdmin.getBaseAccountId());
+
+        if (userInDB != null)
+        {
+            userService.deleteById(professionAdmin.getBaseAccountId());
+        }
+
+        userInDB = userService.getById(student.getBaseAccountId());
+
+        if (userInDB != null)
+        {
+            userService.deleteById(student.getBaseAccountId());
         }
     }
 
@@ -44,51 +77,45 @@ public class UserServiceTest extends TestBase
     public void testCreateUserAndGetUserById()
     {
         // Test save base account.
-        userService.create(baseAccount);
+        userService.create(systemAdmin);
 
-        Account insertedUser = userService.getById(baseAccount.getId());
+        Account insertedUser = userService.getById(systemAdmin.getBaseAccountId());
 
         assertNotNull("Create baseAccount failed", insertedUser);
-        assertEquals(baseAccount.getUserName(), insertedUser.getUserName());
-        assertEquals(baseAccount.getPassword(), insertedUser.getPassword());
-        
-        // Test save student;
-        Student student = (Student)baseAccount;
-        student.setRole(UserRole.STUDENT);
-        userService.create(student);
-        
-        Student insertedStudent = (Student)userService.getById(student.getBaseAccountId());
-        assertNotNull("Create student failed", insertedStudent);
-        assertEquals(student.getUserName(), insertedStudent.getUserName());
-        assertEquals(student.getPassword(), insertedStudent.getPassword());
+        assertEquals(systemAdmin.getUserName(), insertedUser.getUserName());
+        assertEquals(systemAdmin.getPassword(), insertedUser.getPassword());
 
         // Test save profession admin;
-        ProfessionAdmin professionAdmin = (ProfessionAdmin)baseAccount;
-        professionAdmin.setRole(UserRole.PROFESSION_ADMIN);
         userService.create(professionAdmin);
-        
-        ProfessionAdmin insertedProfessionAdmin = (ProfessionAdmin)userService.getById(professionAdmin.getBaseAccountId());
+
+        ProfessionAdmin insertedProfessionAdmin = (ProfessionAdmin) userService.getById(professionAdmin.getBaseAccountId());
         assertNotNull("Create profession admin failed", insertedProfessionAdmin);
         assertEquals(professionAdmin.getUserName(), insertedProfessionAdmin.getUserName());
         assertEquals(professionAdmin.getPassword(), insertedProfessionAdmin.getPassword());
 
         // Test save employer admin;
-        EmployerAdmin employerAdmin = (EmployerAdmin)baseAccount;
-        employerAdmin.setRole(UserRole.EMPLOYER_ADMIN);
-        userService.create(student);
-        
-        EmployerAdmin insertedEmployerAdmin = (EmployerAdmin)userService.getById(employerAdmin.getBaseAccountId());
+        userService.create(employerAdmin);
+
+        EmployerAdmin insertedEmployerAdmin = (EmployerAdmin) userService.getById(employerAdmin.getBaseAccountId());
         assertNotNull("Create EmployerAdmin failed", insertedEmployerAdmin);
         assertEquals(employerAdmin.getUserName(), insertedEmployerAdmin.getUserName());
         assertEquals(employerAdmin.getPassword(), insertedEmployerAdmin.getPassword());
+
+        // Test save student;
+        userService.create(student);
+
+        Student insertedStudent = (Student) userService.getById(student.getBaseAccountId());
+        assertNotNull("Create student failed", insertedStudent);
+        assertEquals(student.getUserName(), insertedStudent.getUserName());
+        assertEquals(student.getPassword(), insertedStudent.getPassword());
     }
 
     @Test
     public void testUpdateUser()
     {
-        userService.create(baseAccount);
+        userService.create(systemAdmin);
 
-        Account insertedUser = userService.getById(baseAccount.getId());
+        Account insertedUser = userService.getById(systemAdmin.getId());
         assertNotNull("Create user failed", insertedUser);
 
         insertedUser.setPassword(MD5Util.getMd5("111111"));
@@ -102,9 +129,9 @@ public class UserServiceTest extends TestBase
     @Test
     public void testGetUserByUserName()
     {
-        userService.create(baseAccount);
+        userService.create(systemAdmin);
 
-        Account insertedUser = userService.getByUserName(baseAccount.getUserName());
+        Account insertedUser = userService.getByUserName(systemAdmin.getUserName());
         assertNotNull("Create user failed", insertedUser);
         assertEquals(insertedUser.getUserName(), insertedUser.getUserName());
         assertEquals(insertedUser.getPassword(), insertedUser.getPassword());
@@ -113,31 +140,31 @@ public class UserServiceTest extends TestBase
     @Test
     public void testDeleteUser()
     {
-        userService.create(baseAccount);
+        userService.create(systemAdmin);
 
-        Account insertedUser = userService.getByUserName(baseAccount.getUserName());
+        Account insertedUser = userService.getByUserName(systemAdmin.getUserName());
         assertNotNull("Create user failed", insertedUser);
 
         assertEquals(insertedUser.getUserName(), insertedUser.getUserName());
         assertEquals(insertedUser.getPassword(), insertedUser.getPassword());
-        
-        userService.deleteById(baseAccount.getId());
-        insertedUser = userService.getByUserName(baseAccount.getUserName());
+
+        userService.deleteById(systemAdmin.getId());
+        insertedUser = userService.getByUserName(systemAdmin.getUserName());
         org.junit.Assert.assertTrue(insertedUser == null);
     }
 
     @Test
     public void testDeleteUserByIdLogically()
     {
-        userService.create(baseAccount);
+        userService.create(systemAdmin);
 
-        Account insertedUser = userService.getByUserName(baseAccount.getUserName());
+        Account insertedUser = userService.getByUserName(systemAdmin.getUserName());
         assertNotNull("Create user failed", insertedUser);
         assertEquals(insertedUser.getUserName(), insertedUser.getUserName());
         assertEquals(insertedUser.getPassword(), insertedUser.getPassword());
-        
-        userService.deleteById(baseAccount.getId());
-        insertedUser = userService.getByUserName(baseAccount.getUserName());
+
+        userService.deleteById(systemAdmin.getId());
+        insertedUser = userService.getByUserName(systemAdmin.getUserName());
         org.junit.Assert.assertTrue(insertedUser == null);
     }
 }

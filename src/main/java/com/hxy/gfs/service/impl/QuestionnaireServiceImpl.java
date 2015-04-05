@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hxy.gfs.model.QuestionChoice;
 import com.hxy.gfs.model.Question;
 import com.hxy.gfs.model.Questionnaire;
-import com.hxy.gfs.repository.QuestionnaireChoiceRepository;
+import com.hxy.gfs.repository.QuestionChoiceRepository;
 import com.hxy.gfs.repository.QuestionRepository;
 import com.hxy.gfs.repository.QuestionnaireRepository;
 import com.hxy.gfs.service.QuestionnaireService;
@@ -25,7 +25,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService
     private QuestionRepository questionRepository;
     
     @Autowired
-    private QuestionnaireChoiceRepository choiceRepository;
+    private QuestionChoiceRepository choiceRepository;
 
     @Override
     @Transactional

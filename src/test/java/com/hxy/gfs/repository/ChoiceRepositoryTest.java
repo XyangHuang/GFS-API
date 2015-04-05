@@ -5,13 +5,13 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.hxy.gfs.repository.QuestionnaireChoiceRepository;
+import com.hxy.gfs.repository.QuestionChoiceRepository;
 
 public class ChoiceRepositoryTest extends TestBase
 {
 
     @Autowired
-    private QuestionnaireChoiceRepository choiceRepository;
+    private QuestionChoiceRepository choiceRepository;
     
     @Test
     public void testDeleteChoiceByIdLogically()

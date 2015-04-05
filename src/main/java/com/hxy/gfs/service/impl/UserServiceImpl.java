@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hxy.gfs.enums.UserRole;
 import com.hxy.gfs.model.BaseAccount;
 import com.hxy.gfs.model.EmployerAdmin;
+import com.hxy.gfs.model.ProfessionAdmin;
 import com.hxy.gfs.model.Student;
 import com.hxy.gfs.model.SystemAdmin;
 import com.hxy.gfs.model.container.Account;
@@ -54,6 +55,9 @@ public class UserServiceImpl implements UserService
                 } else if (user instanceof EmployerAdmin)
                 {
                     user = employerAdminRepository.save((EmployerAdmin) user);
+                } else if (user instanceof ProfessionAdmin)
+                {
+                    user = professionAdminRepository.save((ProfessionAdmin) user);
                 } else
                 {
                     // 系统管理员 Nothing to do
@@ -61,6 +65,7 @@ public class UserServiceImpl implements UserService
             } catch (Exception e)
             {
                 // TODO 抛异常
+                System.out.println(e);
             }
         }
 
@@ -96,6 +101,9 @@ public class UserServiceImpl implements UserService
                 } else if (user instanceof EmployerAdmin)
                 {
                     user = employerAdminRepository.save((EmployerAdmin) user);
+                } else if (user instanceof ProfessionAdmin)
+                {
+                    user = professionAdminRepository.save((ProfessionAdmin) user);
                 } else
                 {
                     // 系统管理员 Nothing to do
@@ -146,7 +154,9 @@ public class UserServiceImpl implements UserService
                     break;
                 case UserRole.SYSTEM_ADMIN:
                     user = new SystemAdmin();
+                    break;
                 default:
+                    user = new Account();
                     break;
             }
             
@@ -192,7 +202,9 @@ public class UserServiceImpl implements UserService
                     break;
                 case UserRole.SYSTEM_ADMIN:
                     user = new SystemAdmin();
+                    break;
                 default:
+                    user = new Account();
                     break;
             }
             
