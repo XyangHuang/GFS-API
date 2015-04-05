@@ -6,6 +6,7 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hxy.gfs.constants.Constants;
+import com.hxy.gfs.model.BaseAccount;
 import com.hxy.gfs.model.BaseModel;
 
 /**
@@ -35,6 +36,10 @@ public class Account extends BaseModel
     @Transient
     @JsonProperty("phone_number")
     private String phoneNumber;
+    
+    @Transient
+    @JsonProperty("role")
+    private int role;
 
     public long getBaseAccountId()
     {
@@ -84,5 +89,26 @@ public class Account extends BaseModel
     public void setPhoneNumber(String phoneNumber)
     {
         this.phoneNumber = phoneNumber;
+    }
+    
+    public int getRole()
+    {
+        return role;
+    }
+
+    public void setRole(int role)
+    {
+        this.role = role;
+    }
+    
+    public void copyFromBaseAccount(BaseAccount account)
+    {
+        if (account != null)
+        {
+            this.userName = account.getUserName();
+            this.name = account.getName();
+            this.phoneNumber = account.getPhoneNumber();
+            this.role = account.getRole();
+        }
     }
 }

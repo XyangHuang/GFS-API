@@ -32,6 +32,9 @@ public class BaseAccount extends BaseModel implements Serializable
     @Column(name = "phone_number", columnDefinition = "VARCHAR(45)")
     private String phoneNumber;
 
+    @Column(name = "role")
+    private int role;
+
     public String getUserName()
     {
         //
@@ -69,14 +72,24 @@ public class BaseAccount extends BaseModel implements Serializable
         this.phoneNumber = phoneNumber;
     }
     
+    public int getRole()
+    {
+        return role;
+    }
+
+    public void setRole(int role)
+    {
+        this.role = role;
+    }
+
     public void copyFromAccount(Account account)
     {
         if (account != null)
         {
             this.userName = account.getUserName();
-            this.password = account.getPassword();
             this.name = account.getName();
             this.phoneNumber = account.getPhoneNumber();
+            this.role = account.getRole();
         }
     }
 }

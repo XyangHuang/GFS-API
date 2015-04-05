@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
-import com.hxy.gfs.enums.UserRoleEnum;
+import com.hxy.gfs.enums.UserRole;
 import com.hxy.gfs.exception.UnAuthorizedException;
 import com.hxy.gfs.i18n.MessageKeys;
 import com.hxy.gfs.model.SessionContext;
@@ -25,20 +25,20 @@ public class BaseResource
      * @return If the user has the exact role and its session is not expired,
      *         return sessionContext, or throw exception
      */
-    protected boolean filterSessionContext(String token, UserRoleEnum allowedRole)
+    protected boolean filterSessionContext(String token, int allowedRole)
     {
         SessionContext sessionContext = sessionContextService.getByToken(token);
         if (sessionContext != null)
         {
             if (!isSessionContextExpired(sessionContext))
             {
-                if (sessionContext.getRole() >= allowedRole.value())
+                if (sessionContext.getRole() >= allowedRole)
                 {
                     flushSessionContext(token);
                     return true;
                 }
             }
-        } else if (UserRoleEnum.ALL.equals(allowedRole))
+        } else if (UserRole.ALL == allowedRole)
         {
             return true;
         }
