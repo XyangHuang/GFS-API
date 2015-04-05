@@ -3,9 +3,15 @@ package com.hxy.gfs.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
+@Entity
+@Table(name = "user_evaluation")
+@JsonRootName("user_evaluation")
 public class UserEvaluation extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = -8387063581771527023L;

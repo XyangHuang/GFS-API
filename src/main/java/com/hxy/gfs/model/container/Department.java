@@ -1,5 +1,6 @@
 package com.hxy.gfs.model.container;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 
@@ -21,4 +22,38 @@ public class Department extends BaseModel
     @Transient
     @JsonProperty("description")
     private long description;
+
+    @Column(name = "base_department_id")
+    @JsonProperty("base_department_id")
+    private long baseDepartmentId;
+
+    public long getName()
+    {
+        return name;
+    }
+
+    public void setName(long name)
+    {
+        this.name = name;
+    }
+
+    public long getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(long description)
+    {
+        this.description = description;
+    }
+
+    public long getBaseDepartmentId()
+    {
+        return baseDepartmentId;
+    }
+
+    public void setBaseDepartmentId(long baseDepartmentId)
+    {
+        this.baseDepartmentId = baseDepartmentId;
+    }
 }

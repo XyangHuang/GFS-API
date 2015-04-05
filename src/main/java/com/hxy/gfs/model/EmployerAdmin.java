@@ -20,31 +20,17 @@ public class EmployerAdmin extends Account implements Serializable {
 
     private static final long serialVersionUID = -3058226900609265985L;
     
-    @Column(name = "base_account_id")
-    @JsonProperty("base_account_id")
-    private long baseAccountId;
-    
-    @Column(name = "employ_id")
-    @JsonProperty("employ_id")
-    private long employId;
+    @Column(name = "employer_id")
+    @JsonProperty("employer_id")
+    private long employerId;
 
-    public long getBaseAccountId()
+    public long getEmployerId()
     {
-        return baseAccountId;
+        return employerId;
     }
 
-    public void setBaseAccountId(long baseAccountId)
+    public void setEmployerId(long employerId)
     {
-        this.baseAccountId = baseAccountId;
-    }
-
-    public long getEmployId()
-    {
-        return employId;
-    }
-
-    public void setEmployId(long employId)
-    {
-        this.employId = employId;
+        this.employerId = employerId;
     }
 }

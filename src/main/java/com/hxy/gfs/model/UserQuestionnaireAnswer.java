@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 @Entity
-@Table(name = "user_answer")
-@JsonRootName("user_answer")
+@Table(name = "user_questionnaire_answer")
+@JsonRootName("user_questionnaire_answer")
 public class UserQuestionnaireAnswer extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = 4150813755678437379L;

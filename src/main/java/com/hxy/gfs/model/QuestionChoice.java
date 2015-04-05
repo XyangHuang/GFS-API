@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import com.hxy.gfs.constants.Constants;
 
 @Entity
-@Table(name = Constants.TABLE_CHOICE_MODEL)
-@JsonRootName(Constants.TABLE_CHOICE_MODEL)
+@Table(name = "questionn_choice")
+@JsonRootName("questionn_choice")
 public class QuestionChoice extends BaseModel implements Serializable
 {
     private static final long serialVersionUID = 2177325190737626891L;

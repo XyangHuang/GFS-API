@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-	<persistence-unit name="GFS">
+    <persistence-unit name="myJPA" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
 		<class>com.hxy.gfs.model.BaseAccount</class>
 		<class>com.hxy.gfs.model.BaseDepartment</class>
 		<class>com.hxy.gfs.model.BaseModel</class>
@@ -15,10 +16,27 @@
 		<class>com.hxy.gfs.model.Questionnaire</class>
 		<class>com.hxy.gfs.model.SessionContext</class>
 		<class>com.hxy.gfs.model.Student</class>
-		<class>com.hxy.gfs.model.SystemAdmin</class>
+		<class>com.hxy.gfs.model.UserEvaluation</class>
 		<class>com.hxy.gfs.model.UserQuestionnaire</class>
 		<class>com.hxy.gfs.model.UserQuestionnaireAnswer</class>
 		<class>com.hxy.gfs.model.container.Account</class>
 		<class>com.hxy.gfs.model.container.Department</class>
+        <properties>
+            <property name="hibernate.connection.driver_class"
+                value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gfs" />
+            <property name="hibernate.connection.username"
+                value="root" />
+            <property name="hibernate.connection.password"
+                value="123456" />
+            <property name="hibernate.dialect"
+                value="org.hibernate.dialect.MySQL5Dialect" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.use_sql_comments" value="false" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.search.default.directory_provider" value="filesystem"/>
+            <property name="hibernate.search.default.indexBase" value="/lucene/indexes"/>
+        </properties>
 	</persistence-unit>
 </persistence>

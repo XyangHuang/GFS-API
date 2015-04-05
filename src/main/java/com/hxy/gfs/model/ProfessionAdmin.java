@@ -13,30 +13,16 @@ import com.hxy.gfs.constants.Constants;
 import com.hxy.gfs.model.container.Account;
 
 @Entity
-@Table(name = Constants.TABLE_MANAGER_MODEL)
-@JsonRootName(Constants.TABLE_MANAGER_MODEL)
+@Table(name = "profession_admin")
+@JsonRootName("profession_admin")
 @QueryField({ Constants.FIELD_BASE_ACCOUNT_USERNAME, Constants.FIELD_BASE_ACCOUNT_PASSWORD })
 public class ProfessionAdmin extends Account implements Serializable {
 
     private static final long serialVersionUID = -3058226900609265985L;
 
-    @Column(name = "base_account_id")
-    @JsonProperty("base_account_id")
-    private long baseAccountId;
-    
     @Column(name = "profession_id")
     @JsonProperty("profession_id")
     private long professionId;
-
-    public long getBaseAccountId()
-    {
-        return baseAccountId;
-    }
-
-    public void setBaseAccountId(long baseAccountId)
-    {
-        this.baseAccountId = baseAccountId;
-    }
 
     public long getProfessionId()
     {

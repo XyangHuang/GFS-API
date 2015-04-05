@@ -101,14 +101,14 @@ public class Account extends BaseModel
         this.role = role;
     }
     
-    public void copyFromBaseAccount(BaseAccount account)
+    public void copyFromBaseAccount(BaseAccount baseAccount)
     {
-        if (account != null)
+        if (baseAccount != null)
         {
-            this.userName = account.getUserName();
-            this.name = account.getName();
-            this.phoneNumber = account.getPhoneNumber();
-            this.role = account.getRole();
+            this.userName = baseAccount.getUserName();
+            this.name = baseAccount.getName();
+            this.phoneNumber = baseAccount.getPhoneNumber();
+            this.role = baseAccount.getRole();
         }
     }
 }

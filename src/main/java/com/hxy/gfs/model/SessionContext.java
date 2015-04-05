@@ -21,7 +21,7 @@ import com.hxy.gfs.model.container.Account;
 
 @Entity
 @Table(name = "session_context")
-@JsonRootName("sessioncontext")
+@JsonRootName("session_context")
 public class SessionContext implements Serializable {
 
     private static final long serialVersionUID = 6827625899927899731L;

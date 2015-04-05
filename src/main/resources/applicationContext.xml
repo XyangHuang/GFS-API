@@ -11,7 +11,7 @@ http://www.springframework.org/schema/data/jpa http://www.springframework.org/sc
 
   <context:annotation-config />
 
-  <context:component-scan base-package="com.hxy.questionnaire" />
+  <context:component-scan base-package="com.hxy.gfs" />
 
   <!-- 定义实体管理器工厂 -->
   <bean id="entityManagerFactory"

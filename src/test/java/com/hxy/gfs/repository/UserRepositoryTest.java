@@ -1,30 +1,19 @@
 package com.hxy.gfs.repository;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.hxy.gfs.MockUtil;
-import com.hxy.gfs.model.Student;
-import com.hxy.gfs.repository.BaseAccountRepository;
-import com.hxy.gfs.utils.MD5Util;
 
 public class UserRepositoryTest extends TestBase
 {
     @Autowired
     private BaseAccountRepository userRepository;
     
-    private Student user;
-
-    @Before
-    public void setUp()
-    {
-        user = MockUtil.mockUser();
-    }
+//    private Student user;
+//
+//    @Before
+//    public void setUp()
+//    {
+//        user = MockUtil.mockUser();
+//    }
 
 //    @After
 //    public void tearDown()

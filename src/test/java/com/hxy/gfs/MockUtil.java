@@ -4,10 +4,10 @@ import java.util.Random;
 
 import com.hxy.gfs.enums.QuestionType;
 import com.hxy.gfs.enums.QuestionnaireStatus;
-import com.hxy.gfs.model.QuestionChoice;
 import com.hxy.gfs.model.Question;
+import com.hxy.gfs.model.QuestionChoice;
 import com.hxy.gfs.model.Questionnaire;
-import com.hxy.gfs.model.Student;
+import com.hxy.gfs.model.container.Account;
 import com.hxy.gfs.utils.MD5Util;
 
 public class MockUtil
@@ -25,12 +25,13 @@ public class MockUtil
         return questionnaire;
     }
     
-    public static Student mockUser()
+    public static Account mockUser()
     {
-        Student user = new Student();
+        Account user = new Account();
         user.setUserName(MOCK_USER_NAME + new Random().nextDouble());
         user.setPassword(MOCK_PASSWORD);
         user.setName(MOCK_NAME);
+        user.setPhoneNumber("1234567890");
         
         return user;
     }

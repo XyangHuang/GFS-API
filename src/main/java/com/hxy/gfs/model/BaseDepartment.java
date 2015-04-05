@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
  * 作为基础部门表
  * @author Administrator
@@ -22,6 +24,10 @@ public class BaseDepartment extends BaseModel implements Serializable
     
     @Column(name = "description")
     private long description;
+    
+    @Column(name = "base_department_id")
+    @JsonProperty("base_department_id")
+    private long baseDepartmentId;
 
     public long getName()
     {
@@ -41,5 +47,15 @@ public class BaseDepartment extends BaseModel implements Serializable
     public void setDescription(long description)
     {
         this.description = description;
+    }
+
+    public long getBaseDepartmentId()
+    {
+        return baseDepartmentId;
+    }
+
+    public void setBaseDepartmentId(long baseDepartmentId)
+    {
+        this.baseDepartmentId = baseDepartmentId;
     }
 }
