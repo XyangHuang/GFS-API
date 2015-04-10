@@ -13,8 +13,8 @@ public interface BaseAccountRepository extends CrudRepository<BaseAccount, Long>
     public BaseAccount getBaseAccountByUserName(@Param("userName") String userName);
 
     @Modifying
-    @Query("UPDATE BaseAccount u SET u.password=:password WHERE u.id=:userId")
-    public int updatePassword(@Param("userId") long userId, @Param("password") String password);
+    @Query("UPDATE BaseAccount u SET u.password=:newPassword WHERE u.id=:userId")
+    public int changePassword(@Param("userId") long userId, @Param("newPassword") String newPassword);
 
     @Modifying
     @Query("UPDATE BaseAccount u SET u.markForDelete=0 WHERE u.id=:userId")

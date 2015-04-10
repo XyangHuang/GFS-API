@@ -42,7 +42,7 @@ public class SessionContext implements Serializable {
     private Date expireTime;
     
     @Column(name = "user_id")
-    @JsonProperty("userId")
+    @JsonIgnore
     private long userId;
     
     @Transient

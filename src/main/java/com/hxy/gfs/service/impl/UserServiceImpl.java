@@ -14,11 +14,13 @@ import com.hxy.gfs.model.ProfessionAdmin;
 import com.hxy.gfs.model.Student;
 import com.hxy.gfs.model.SystemAdmin;
 import com.hxy.gfs.model.container.Account;
+import com.hxy.gfs.model.container.ChangePasswordForm;
 import com.hxy.gfs.repository.BaseAccountRepository;
 import com.hxy.gfs.repository.EmployerAdminRepository;
 import com.hxy.gfs.repository.ProfessionAdminRepository;
 import com.hxy.gfs.repository.StudentRepository;
 import com.hxy.gfs.service.UserService;
+import com.hxy.gfs.utils.MD5Util;
 
 @Service("userService")
 public class UserServiceImpl implements UserService
@@ -302,15 +304,18 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public void updatePassword(long id, String oldPassword, String newPassword)
+    public void changePassword(ChangePasswordForm changePasswordForm)
     {
-        if (oldPassword == null || newPassword == null)
+        if (changePasswordForm == null)
         {
-            // TODO 抛异常
-            return;
+            // TODO exception;
         }
         
-        BaseAccount userInDB = baseAccountRepository.findOne(id);
+        long userId = changePasswordForm.getUserId();
+        String oldPassword = MD5Util.getMd5(changePasswordForm.getOldPassword());
+        String newPassword = MD5Util.getMd5(changePasswordForm.getNewPassword());
+        
+        BaseAccount userInDB = baseAccountRepository.findOne(userId);
         
         if (userInDB == null)
         {
@@ -326,7 +331,7 @@ public class UserServiceImpl implements UserService
         
         try
         {
-            baseAccountRepository.updatePassword(id, newPassword);
+            baseAccountRepository.changePassword(userId, newPassword);
         } catch (Exception e)
         {
             // TODO 抛异常

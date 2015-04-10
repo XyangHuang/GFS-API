@@ -31,6 +31,7 @@ public class LoginResource
     private SessionContextService sessionContextService;
 
     @POST
+    @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     public String userLogin(String inString)
     {

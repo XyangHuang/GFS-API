@@ -38,6 +38,10 @@ public class Account extends BaseModel
     private String phoneNumber;
     
     @Transient
+    @JsonProperty("email")
+    private String email;
+    
+    @Transient
     @JsonProperty("role")
     private int role;
 
@@ -91,6 +95,16 @@ public class Account extends BaseModel
         this.phoneNumber = phoneNumber;
     }
     
+    public String getEmail()
+    {
+        return email;
+    }
+
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
     public int getRole()
     {
         return role;
@@ -109,6 +123,7 @@ public class Account extends BaseModel
             this.password = baseAccount.getPassword();
             this.name = baseAccount.getName();
             this.phoneNumber = baseAccount.getPhoneNumber();
+            this.email = baseAccount.getEmail();
             this.role = baseAccount.getRole();
         }
     }

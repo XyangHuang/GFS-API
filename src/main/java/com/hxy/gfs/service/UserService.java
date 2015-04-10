@@ -3,6 +3,7 @@ package com.hxy.gfs.service;
 import java.util.List;
 
 import com.hxy.gfs.model.container.Account;
+import com.hxy.gfs.model.container.ChangePasswordForm;
 
 public interface UserService {
 
@@ -14,8 +15,8 @@ public interface UserService {
     
     public Account getById(long sid);
     
-    public void updatePassword(long id, String oldPassword, String newPassword);
-
+    public void changePassword(ChangePasswordForm changePasswordForm);
+    
     public void deleteById(long sid);
     
     public void deleteByIdLogically(long sid);
